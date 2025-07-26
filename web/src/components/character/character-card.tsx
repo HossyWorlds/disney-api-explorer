@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Character } from '@/types/disney';
 import { Film, Tv, Gamepad, MapPin } from 'lucide-react';
+import { FavoriteButton } from '@/components/ui/favorite-button';
 
 interface CharacterCardProps {
   character: Character;
@@ -35,6 +36,11 @@ export const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
             </span>
           </div>
         )}
+        
+        {/* Favorite Button */}
+        <div className="absolute top-2 right-2">
+          <FavoriteButton character={character} size="sm" />
+        </div>
       </div>
       
       <div className="p-4">

@@ -4,6 +4,17 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { CharacterCard } from '@/components/character/character-card'
 import { Character } from '@/types/disney'
 
+// Mock localStorage
+Object.defineProperty(window, 'localStorage', {
+  value: {
+    getItem: vi.fn(() => null),
+    setItem: vi.fn(() => null),
+    removeItem: vi.fn(() => null),
+    clear: vi.fn(() => null),
+  },
+  writable: true,
+})
+
 const mockCharacter: Character = {
   _id: 1,
   name: 'Mickey Mouse',
