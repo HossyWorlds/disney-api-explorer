@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { SearchBar } from '@/components/ui/search-bar';
 import { CharacterGallery } from '@/components/character/character-gallery';
 import { useCharacterSearch, useAllCharacters } from '@/hooks/use-character-search';
+import { Character } from '@/types/disney';
 
 export default function Home() {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,9 +29,9 @@ export default function Home() {
     setCurrentPage(page);
   }, []);
 
-  const handleCharacterClick = useCallback(() => {
-    // TODO: Implement character detail view
-  }, []);
+  const handleCharacterClick = useCallback((character: Character) => {
+    router.push(`/character/${character._id}`);
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-gray-50">

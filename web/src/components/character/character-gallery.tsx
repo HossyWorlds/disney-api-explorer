@@ -9,7 +9,7 @@ interface CharacterGalleryProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  onCharacterClick?: () => void;
+  onCharacterClick?: (character: Character) => void;
   isLoading?: boolean;
 }
 
@@ -52,7 +52,7 @@ export const CharacterGallery = ({
           <CharacterCard
             key={character._id}
             character={character}
-            onClick={onCharacterClick}
+            onClick={() => onCharacterClick?.(character)}
           />
         ))}
       </div>
