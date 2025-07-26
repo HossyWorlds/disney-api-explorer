@@ -11,10 +11,10 @@ export const useCharacterSearch = (searchTerm: string, page = 1, enabled = true)
   });
 };
 
-export const useAllCharacters = (page = 1) => {
+export const useAllCharacters = (page = 1, pageSize = 50) => {
   return useQuery({
-    queryKey: ['characters', 'all', page],
-    queryFn: () => disneyApi.getAllCharacters(page),
+    queryKey: ['characters', 'all', page, pageSize],
+    queryFn: () => disneyApi.getAllCharacters(page, pageSize),
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
   });

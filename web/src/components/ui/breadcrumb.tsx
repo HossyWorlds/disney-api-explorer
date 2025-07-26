@@ -17,10 +17,11 @@ export const Breadcrumb = ({ items }: BreadcrumbProps) => {
     <nav className="flex items-center space-x-1 text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
       <Link 
         href="/" 
-        className="flex items-center hover:text-gray-900 transition-colors"
+        className="flex items-center gap-1 hover:text-gray-900 transition-colors"
         aria-label="Home"
       >
         <Home className="w-4 h-4" />
+        <span>Home</span>
       </Link>
       
       {items.map((item, index) => (

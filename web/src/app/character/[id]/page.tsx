@@ -10,7 +10,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const character = await disneyApi.getCharacterById(parseInt(params.id));
     
-    const title = `${character.name} - Disney Character Details`;
+    if (!character || !character.name) {
+      return {
+        title: 'Disney Character - Disney API Explorer',
+        description: 'Disney character not found',
+      };
+    }
+    
+    const title = `${character.name} - Disney API Explorer`;
     const description = `Explore ${character.name}, a Disney character. View films, TV shows, games, and more information about this beloved character.`;
     const imageUrl = character.imageUrl;
     const url = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://disney-api-explorer.vercel.app'}/character/${character._id}`;
