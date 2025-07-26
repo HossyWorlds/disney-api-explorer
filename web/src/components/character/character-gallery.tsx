@@ -11,6 +11,7 @@ interface CharacterGalleryProps {
   onPageChange: (page: number) => void;
   onCharacterClick?: (character: Character) => void;
   isLoading?: boolean;
+  viewMode?: 'grid' | 'list';
 }
 
 export const CharacterGallery = ({
@@ -19,15 +20,24 @@ export const CharacterGallery = ({
   totalPages,
   onPageChange,
   onCharacterClick,
-  isLoading
+  isLoading,
+  viewMode = 'grid'
 }: CharacterGalleryProps) => {
   if (isLoading) {
+    const gridClasses = viewMode === 'grid' 
+      ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      : "space-y-4";
+      
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className={gridClasses}>
         {Array.from({ length: 8 }).map((_, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md animate-pulse">
-            <div className="h-64 bg-gray-200 rounded-t-lg" />
-            <div className="p-4">
+          <div key={index} className={`bg-white rounded-lg shadow-md animate-pulse ${
+            viewMode === 'list' ? 'flex items-center p-4 gap-4' : ''
+          }`}>
+            <div className={`bg-gray-200 ${
+              viewMode === 'list' ? 'w-16 h-16 rounded-lg flex-shrink-0' : 'h-64 rounded-t-lg'
+            }`} />
+            <div className={viewMode === 'list' ? 'flex-1' : 'p-4'}>
               <div className="h-6 bg-gray-200 rounded mb-2" />
               <div className="h-4 bg-gray-200 rounded w-2/3" />
             </div>
@@ -45,14 +55,19 @@ export const CharacterGallery = ({
     );
   }
 
+  const containerClasses = viewMode === 'grid'
+    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8"
+    : "space-y-4 mb-8";
+
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+      <div className={containerClasses}>
         {characters.map((character) => (
           <CharacterCard
             key={character._id}
             character={character}
             onClick={() => onCharacterClick?.(character)}
+            viewMode={viewMode}
           />
         ))}
       </div>
