@@ -20,6 +20,74 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Testing Strategy
+
+This project implements a comprehensive testing strategy to ensure quality and reliability:
+
+### Unit Tests (Vitest + React Testing Library)
+- **Location**: `src/__tests__/`
+- **Run**: `npm run test`
+- **Coverage**: `npm run test:coverage`
+- **Watch mode**: `npm run test:watch`
+
+### E2E Tests (Playwright)
+- **Location**: `src/__tests__/e2e/`
+- **Run**: `npm run test:e2e`
+- **UI mode**: `npm run test:e2e:ui`
+- **Headed mode**: `npm run test:e2e:headed`
+
+### Visual Regression Tests
+- Screenshot comparisons for UI consistency
+- Mobile and desktop layouts
+- Search results and error states
+
+### Performance Tests
+- Page load time measurements
+- Search response time validation
+- Memory leak detection
+
+### Running All Tests
+```bash
+# Run the comprehensive test suite
+./scripts/test-all.sh
+```
+
+### Test Categories
+
+1. **Home Page Tests**
+   - Page loading and rendering
+   - Character card display
+   - Search functionality
+   - Navigation to detail pages
+   - Error handling
+   - Mobile responsiveness
+
+2. **Character Detail Tests**
+   - Detail page loading
+   - Information sections display
+   - Navigation back to home
+   - Non-existent character handling
+   - Mobile layout verification
+
+3. **Visual Regression Tests**
+   - Screenshot comparisons
+   - Layout consistency
+   - Cross-browser compatibility
+
+4. **Performance Tests**
+   - Load time measurements
+   - Search response times
+   - Memory usage monitoring
+
+## CI/CD Integration
+
+Tests are automatically run on:
+- Every push to main/develop branches
+- All pull requests
+- Manual triggers
+
+Test results and screenshots are uploaded as artifacts for review.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

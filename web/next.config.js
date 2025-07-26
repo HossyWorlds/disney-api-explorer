@@ -8,6 +8,16 @@ const nextConfig = {
     // Only ignore ESLint during production builds
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'static.wikia.nocookie.net',
+        port: '',
+        pathname: '/disney/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
