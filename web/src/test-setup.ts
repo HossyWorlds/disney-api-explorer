@@ -20,13 +20,19 @@ vi.mock('next/navigation', () => ({
 }))
 
 // Mock Next.js Image component
-vi.mock('next/image', () => ({
-  default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    const { priority, ...imgProps } = props
-    return React.createElement('img', imgProps)
-  },
-}))
+vi.mock('next/image', () => {
+  return {
+    __esModule: true,
+    default: (props: any) => {
+      // Extract Next.js specific props and ignore them
+      const { priority, fill, sizes, ...imgProps } = props
+      return React.createElement('img', {
+        ...imgProps,
+        'data-testid': 'mock-image'
+      })
+    },
+  }
+})
 
 // Global test setup
 global.fetch = vi.fn()
@@ -38,8 +44,8 @@ Object.defineProperty(window, 'matchMedia', {
     matches: false,
     media: query,
     onchange: null,
-    addListener: vi.fn(), // deprecated
-    removeListener: vi.fn(), // deprecated
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
