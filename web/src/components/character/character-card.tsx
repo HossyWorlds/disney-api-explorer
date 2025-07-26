@@ -24,6 +24,7 @@ export const CharacterCard = ({ character, onClick, viewMode = 'grid' }: Charact
     <div 
       className={cardClasses}
       onClick={() => onClick?.()}
+      data-testid="character-card"
     >
       <div className={`relative bg-gray-100 ${
         viewMode === 'list' 
