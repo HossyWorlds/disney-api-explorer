@@ -18,13 +18,14 @@ This project was created by a software engineer and Disney fan to solve a real p
 - Icons: Lucide React
 
 ## Project Structure
-- `src/app`: Next.js App Router pages and layouts
-- `src/components`: Reusable React components
-  - `src/components/ui`: Base UI components
-  - `src/components/character`: Character-specific components
-- `src/lib`: Core utilities and API clients
-- `src/types`: TypeScript type definitions
-- `src/hooks`: Custom React hooks
+- `/web`: React/Next.js application
+  - `src/app`: Next.js App Router pages and layouts
+  - `src/components`: Reusable React components
+    - `src/components/ui`: Base UI components
+    - `src/components/character`: Character-specific components
+  - `src/lib`: Core utilities and API clients
+  - `src/types`: TypeScript type definitions
+  - `src/hooks`: Custom React hooks
 
 ## Commands
 - `npm run dev`: Start development server
